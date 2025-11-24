@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf dist && tsc",
+    "build": "npx rimraf dist && npx tsc",
     "dev": "cross-env NODE_ENV=development ts-node-dev --respawn --transpile-only --project tsconfig.json src/server.ts",
     "start": "cross-env NODE_ENV=production node dist/server.js"
   },
