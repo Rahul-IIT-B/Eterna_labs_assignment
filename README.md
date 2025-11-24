@@ -48,11 +48,6 @@ Redis must be reachable at `REDIS_URL` (defaults to `redis://localhost:6379`). U
     ```bash
    Measure-Command { 1..10 | ForEach-Object { Invoke-RestMethod 'http://eterna-labs-assignment.onrender.com/tokens?limit=20' > $null } }
     ```
- - Redis
-    ```bash
-   docker exec -it test-redis redis-cli --raw KEYS 'token:*'
-   docker exec -it test-redis redis-cli GET 'token:DTF6900'
-    ```
 
 ## Create connection in browser devtools console
 ```bash
