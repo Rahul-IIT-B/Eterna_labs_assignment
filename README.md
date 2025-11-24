@@ -32,21 +32,21 @@ Redis must be reachable at `REDIS_URL` (defaults to `redis://localhost:6379`). U
 ## Powershell Commands
  - Health
    ```bash
-   Invoke-RestMethod 'http://eterna-labs-assignment/health'
+   Invoke-RestMethod 'http://eterna-labs-assignment.onrender.com/health'
    ```
  - List Tokens
     ```bash
-   Invoke-RestMethod 'http://eterna-labs-assignment/tokens?limit=10&sortBy=volume&sortDir=desc&period=24h' | ConvertTo-Json -Depth 4
+   Invoke-RestMethod 'http://eterna-labs-assignment.onrender.com/tokens?limit=10&sortBy=volume&sortDir=desc&period=24h' | ConvertTo-Json -Depth 4
     ```
  - Get Token Details
     ```bash
-    $r = Invoke-RestMethod 'http://eterna-labs-assignment/tokens?limit=1'
+    $r = Invoke-RestMethod 'http://eterna-labs-assignment.onrender.com/tokens?limit=1'
     $addr = $r.items[0].address
-    Invoke-RestMethod "http://eterna-labs-assignment/tokens/$([System.Uri]::EscapeDataString($addr))" | ConvertTo-Json -Depth 5
+    Invoke-RestMethod "http://eterna-labs-assignment.onrender.com/tokens/$([System.Uri]::EscapeDataString($addr))" | ConvertTo-Json -Depth 5
     ```
  - Benchmark List Tokens
     ```bash
-   Measure-Command { 1..10 | ForEach-Object { Invoke-RestMethod 'http://eterna-labs-assignment/tokens?limit=20' > $null } }
+   Measure-Command { 1..10 | ForEach-Object { Invoke-RestMethod 'http://eterna-labs-assignment.onrender.com/tokens?limit=20' > $null } }
     ```
  - Redis
     ```bash
