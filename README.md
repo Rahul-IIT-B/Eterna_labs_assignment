@@ -32,21 +32,21 @@ Redis must be reachable at `REDIS_URL` (defaults to `redis://localhost:6379`). U
 ## Powershell Commands
  - Health
    ```bash
-   Invoke-RestMethod 'http://localhost:4000/health'
+   Invoke-RestMethod 'http://eterna-labs-assignment/health'
    ```
  - List Tokens
     ```bash
-   Invoke-RestMethod 'http://localhost:4000/tokens?limit=10&sortBy=volume&sortDir=desc&period=24h' | ConvertTo-Json -Depth 4
+   Invoke-RestMethod 'http://eterna-labs-assignment/tokens?limit=10&sortBy=volume&sortDir=desc&period=24h' | ConvertTo-Json -Depth 4
     ```
  - Get Token Details
     ```bash
-    $r = Invoke-RestMethod 'http://localhost:4000/tokens?limit=1'
+    $r = Invoke-RestMethod 'http://eterna-labs-assignment/tokens?limit=1'
     $addr = $r.items[0].address
-    Invoke-RestMethod "http://localhost:4000/tokens/$([System.Uri]::EscapeDataString($addr))" | ConvertTo-Json -Depth 5
+    Invoke-RestMethod "http://eterna-labs-assignment/tokens/$([System.Uri]::EscapeDataString($addr))" | ConvertTo-Json -Depth 5
     ```
  - Benchmark List Tokens
     ```bash
-   Measure-Command { 1..10 | ForEach-Object { Invoke-RestMethod 'http://localhost:4000/tokens?limit=20' > $null } }
+   Measure-Command { 1..10 | ForEach-Object { Invoke-RestMethod 'http://eterna-labs-assignment/tokens?limit=20' > $null } }
     ```
  - Redis
     ```bash
@@ -56,14 +56,14 @@ Redis must be reachable at `REDIS_URL` (defaults to `redis://localhost:6379`). U
 
 ## Create connection in browser devtools console
 ```bash
-const sScript = document.createElement('script');
-sScript.src = 'https://cdn.socket.io/4.8.1/socket.io.min.js';
-document.head.appendChild(sScript);
-sScript.onload = () => {
-  const s = io('http://localhost:4000');
-  s.on('connect', () => console.log('connected', s.id));
-  s.on('initial_snapshot', data => console.log('snapshot', data));
-  s.on('token_update', data => console.log('update', data));
+const s = document.createElement('script');
+s.src = 'https://cdn.socket.io/4.8.1/socket.io.min.js';
+document.head.appendChild(s);
+s.onload = () => {
+  const socket = io('https://eterna-labs-assignment.onrender.com');       
+  socket.on('connect', () => console.log('socket connected', socket.id));
+  socket.on('initial_snapshot', m => console.log('initial_snapshot', m));
+  socket.on('token_update', m => console.log('token_update', m));
 };
 ```
 
